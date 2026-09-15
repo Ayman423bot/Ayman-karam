@@ -1,0 +1,10 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin | ELITE</title><link rel="stylesheet" href="/static/style.css"></head><body><header><b>ELITE ADMIN 🛡️</b><a href="/">المنصة</a><a href="/admin/logout">تسجيل الخروج</a></header><main>
+<div class="hero"><h1>لوحة تحكم الإدارة</h1><p>إدارة المحتوى والطلاب والإعلانات والحصص.</p></div>
+<div class="grid">
+<section class="card"><h2>➕ إضافة درس</h2><form method="post" action="/admin/lesson"><input name="title" placeholder="اسم الدرس" required><input name="grade" placeholder="الصف" required><input name="unit" placeholder="Unit"><textarea name="content" placeholder="وصف الدرس"></textarea><input name="live_url" placeholder="رابط الحصة Live (اختياري)"><button>إضافة الدرس</button></form></section>
+<section class="card"><h2>📢 إعلان</h2><form method="post" action="/admin/announcement"><input name="title" placeholder="العنوان" required><textarea name="body" placeholder="نص الإعلان" required></textarea><button>نشر الإعلان</button></form></section>
+<section class="card"><h2>👨‍🎓 طالب</h2><form method="post" action="/admin/student"><input name="name" placeholder="اسم الطالب" required><input name="grade" placeholder="الصف" required><input name="progress" type="number" min="0" max="100" value="0"><button>إضافة الطالب</button></form></section>
+</div>
+<h2>📚 الدروس</h2>{% for x in lessons %}<div class="row"><span><b>{{x.title}}</b> — {{x.grade}}</span><form method="post" action="/admin/delete/lesson/{{x.id}}"><button class="danger">حذف</button></form></div>{% endfor %}
+<h2>👨‍🎓 الطلاب</h2>{% for x in students %}<div class="row"><span>{{x.name}} — {{x.grade}} — {{x.progress}}%</span></div>{% else %}<p>لا يوجد طلاب بعد.</p>{% endfor %}
+</main></body></html>
